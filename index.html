@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>김민혁의 개발 포폴</title>
+  <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind -->
+  <script src="https://unpkg.com/vue@3"></script> <!-- Vue.js -->
+</head>
+<body>
+  <div id="app">
+    <h1 class="text-center text-2xl pt-6 pb-3">김민혁의 개발 포폴</h1>
+
+    <nav>
+      <ul class="flex justify-center space-x-4 mt-4">
+        <li><button @click="currentPage = 'About'" class="text-blue-500">About</button></li>
+        <li><button @click="currentPage = 'Projects'" class="text-blue-500">Projects</button></li>
+        <li><button @click="currentPage = 'Contact'" class="text-blue-500">Contact</button></li>
+      </ul>
+    </nav>
+
+    <main class="mt-8 text-center">
+      <component :is="currentPage"></component>
+    </main>
+
+    <footer>
+      <p class="text-center mt-4">© 2025 VividHyeok</p>
+    </footer>
+  </div>
+
+  <script>
+    // 각 페이지 컴포넌트 정의
+    const About = {
+      template: `
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h2 class="text-xl font-bold mb-2">About Me</h2>
+      <p>안녕하세요! 김민혁입니다.</p>
+    </div>
+  `
+    };
+    const Projects = {
+      template: `
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h2 class="text-xl font-bold mb-2">Projects</h2>
+      <p>진행한 프로젝트를 소개합니다.</p>
+      <ul>
+        <li><a href="">프로젝트 1</a></li>
+        <li>프로젝트 2</li>
+        <li>프로젝트 3</li>
+      </ul>
+    </div>
+  `
+    };
+    const Contact = {
+      template: `
+    <div class="p-4 bg-gray-50 rounded-lg">
+      <h2 class="text-xl font-bold mb-2">Contact</h2>
+      <p>문의는 여기로 부탁드립니다.</p>
+    </div>
+  `
+    };
+
+    // Vue 앱 생성
+    const app = Vue.createApp({
+      data() {
+        return {
+          currentPage: 'About' // 기본 페이지
+        }
+      },
+      components: {
+        About, Projects, Contact
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
